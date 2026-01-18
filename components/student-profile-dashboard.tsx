@@ -1,6 +1,4 @@
 "use client"
-
-import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
@@ -30,33 +28,114 @@ import { MultidimensionalChart } from "@/components/multidimensional-chart"
 import { RelationshipMap } from "@/components/relationship-map"
 import Link from "next/link"
 
-// Mock student data
-const studentData = {
-  id: "2024-001",
-  name: "김민준",
-  grade: "초등학교 4학년",
-  age: 10,
-  avatar: "/student-boy.png",
-  status: "경계선 지적기능",
-  enrollmentDate: "2021-03-02",
-  lastAssessment: "2024-10-15",
-  interests: ["레고 조립", "공룡", "자동차"],
-  likes: ["체육 시간", "미술 활동", "친구들과 놀기"],
-  specialNotes:
-    "시각적 자료에 잘 반응하며, 칭찬을 통한 동기부여가 효과적입니다. 수학 개념 이해에 어려움이 있으나 구체물을 활용하면 이해도가 향상됩니다.",
-  dimensions: {
-    cognitive: 65,
-    learning: 58,
-    emotional: 72,
-    social: 68,
-    behavioral: 75,
+const studentsData: Record<string, any> = {
+  "7": {
+    id: "2024-007",
+    name: "김민지",
+    grade: "초등학교 4학년",
+    age: 10,
+    avatar: "/student-boy.png",
+    status: "경계선 지적기능",
+    enrollmentDate: "2021-03-02",
+    lastAssessment: "2024-10-20",
+    interests: ["그림 그리기", "인형 놀이", "동화책"],
+    likes: ["음악 시간", "친구들과 이야기하기", "소풍"],
+    specialNotes:
+      "최근 친구와 다툼이 있어 상담을 진행했습니다. 감정 표현에 어려움이 있으나 그림을 통해 자신의 감정을 잘 표현합니다. 또래 관계 형성에 지속적인 관심이 필요합니다.",
+    dimensions: {
+      cognitive: 63,
+      learning: 60,
+      emotional: 55,
+      social: 58,
+      behavioral: 70,
+    },
+    recentProgress: [
+      { date: "2024-10", cognitive: 63, learning: 60, emotional: 55, social: 58 },
+      { date: "2024-09", cognitive: 61, learning: 58, emotional: 60, social: 62 },
+      { date: "2024-08", cognitive: 60, learning: 56, emotional: 62, social: 60 },
+      { date: "2024-07", cognitive: 58, learning: 54, emotional: 63, social: 58 },
+    ],
   },
-  recentProgress: [
-    { date: "2024-10", cognitive: 65, learning: 58, emotional: 72, social: 68 },
-    { date: "2024-09", cognitive: 62, learning: 55, emotional: 70, social: 65 },
-    { date: "2024-08", cognitive: 60, learning: 53, emotional: 68, social: 63 },
-    { date: "2024-07", cognitive: 58, learning: 50, emotional: 65, social: 60 },
-  ],
+  "1": {
+    id: "2024-001",
+    name: "김민준",
+    grade: "초등학교 4학년",
+    age: 10,
+    avatar: "/student-boy.png",
+    status: "경계선 지적기능",
+    enrollmentDate: "2021-03-02",
+    lastAssessment: "2024-10-15",
+    interests: ["레고 조립", "공룡", "자동차"],
+    likes: ["체육 시간", "미술 활동", "친구들과 놀기"],
+    specialNotes:
+      "시각적 자료에 잘 반응하며, 칭찬을 통한 동기부여가 효과적입니다. 수학 개념 이해에 어려움이 있으나 구체물을 활용하면 이해도가 향상됩니다.",
+    dimensions: {
+      cognitive: 65,
+      learning: 58,
+      emotional: 72,
+      social: 68,
+      behavioral: 75,
+    },
+    recentProgress: [
+      { date: "2024-10", cognitive: 65, learning: 58, emotional: 72, social: 68 },
+      { date: "2024-09", cognitive: 62, learning: 55, emotional: 70, social: 65 },
+      { date: "2024-08", cognitive: 60, learning: 53, emotional: 68, social: 63 },
+      { date: "2024-07", cognitive: 58, learning: 50, emotional: 65, social: 60 },
+    ],
+  },
+  "2": {
+    id: "2024-002",
+    name: "박서연",
+    grade: "초등학교 3학년",
+    age: 9,
+    avatar: "/student-boy.png",
+    status: "경계선 지적기능",
+    enrollmentDate: "2022-03-02",
+    lastAssessment: "2024-10-12",
+    interests: ["노래 부르기", "춤추기", "색칠하기"],
+    likes: ["음악 시간", "점심시간", "친구들과 놀기"],
+    specialNotes: "음악적 재능이 있으며 리듬감이 좋습니다. 언어 표현력이 부족하나 노래를 통해 감정을 잘 표현합니다.",
+    dimensions: {
+      cognitive: 60,
+      learning: 55,
+      emotional: 70,
+      social: 65,
+      behavioral: 72,
+    },
+    recentProgress: [
+      { date: "2024-10", cognitive: 60, learning: 55, emotional: 70, social: 65 },
+      { date: "2024-09", cognitive: 58, learning: 53, emotional: 68, social: 63 },
+      { date: "2024-08", cognitive: 56, learning: 51, emotional: 66, social: 61 },
+      { date: "2024-07", cognitive: 54, learning: 49, emotional: 64, social: 59 },
+    ],
+  },
+  "6": {
+    id: "2024-006",
+    name: "김민주",
+    grade: "초등학교 4학년",
+    age: 10,
+    avatar: "/student-boy.png",
+    status: "경계선 지적기능",
+    enrollmentDate: "2021-03-02",
+    lastAssessment: "2024-10-18",
+    interests: ["동물", "자연관찰", "만들기"],
+    likes: ["과학 시간", "현장학습", "동물 돌보기"],
+    specialNotes:
+      "동물과 자연에 대한 관심이 높으며 관찰력이 뛰어납니다. 집중력이 짧은 편이나 관심 분야에서는 높은 집중력을 보입니다.",
+    dimensions: {
+      cognitive: 62,
+      learning: 57,
+      emotional: 68,
+      social: 64,
+      behavioral: 71,
+    },
+    recentProgress: [
+      { date: "2024-10", cognitive: 62, learning: 57, emotional: 68, social: 64 },
+      { date: "2024-09", cognitive: 60, learning: 55, emotional: 66, social: 62 },
+      { date: "2024-08", cognitive: 58, learning: 53, emotional: 64, social: 60 },
+      { date: "2024-07", cognitive: 56, learning: 51, emotional: 62, social: 58 },
+    ],
+  },
 }
 
 interface StudentProfileDashboardProps {
@@ -65,7 +144,7 @@ interface StudentProfileDashboardProps {
 }
 
 export function StudentProfileDashboard({ studentId, onBack }: StudentProfileDashboardProps) {
-  const [selectedStudent] = useState(studentData)
+  const selectedStudent = studentsData[studentId] || studentsData["1"]
 
   return (
     <div className="min-h-screen bg-background">
@@ -175,7 +254,7 @@ export function StudentProfileDashboard({ studentId, onBack }: StudentProfileDas
             </CardHeader>
             <CardContent>
               <div className="flex flex-wrap gap-2">
-                {selectedStudent.interests.map((interest, idx) => (
+                {selectedStudent.interests.map((interest: string, idx: number) => (
                   <Badge key={idx} variant="secondary">
                     {interest}
                   </Badge>
@@ -193,7 +272,7 @@ export function StudentProfileDashboard({ studentId, onBack }: StudentProfileDas
             </CardHeader>
             <CardContent>
               <div className="flex flex-wrap gap-2">
-                {selectedStudent.likes.map((like, idx) => (
+                {selectedStudent.likes.map((like: string, idx: number) => (
                   <Badge key={idx} variant="secondary">
                     {like}
                   </Badge>

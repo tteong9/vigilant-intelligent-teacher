@@ -26,13 +26,13 @@ import { StudentProfileDashboard } from "@/components/student-profile-dashboard"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 const supportStudents = [
+  { id: "7", name: "김민지", grade: "초등 4학년", status: "지원 중", priority: "normal", urgency: 3 },
   { id: "1", name: "김민준", grade: "초등 4학년", status: "지원 중", priority: "normal", urgency: 3 },
   { id: "2", name: "박서연", grade: "초등 3학년", status: "지원 중", priority: "normal", urgency: 3 },
   { id: "3", name: "이준호", grade: "초등 5학년", status: "주의 필요", priority: "high", urgency: 1 },
   { id: "4", name: "최지우", grade: "초등 4학년", status: "지원 중", priority: "normal", urgency: 3 },
   { id: "5", name: "정수아", grade: "초등 3학년", status: "주의 필요", priority: "medium", urgency: 2 },
   { id: "6", name: "김민주", grade: "초등 4학년", status: "지원 중", priority: "normal", urgency: 3 },
-  { id: "7", name: "김민지", grade: "초등 4학년", status: "지원 중", priority: "normal", urgency: 3 },
 ]
 
 const allStudents = [
